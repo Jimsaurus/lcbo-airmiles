@@ -38,7 +38,7 @@ app.stores = function(location){
 		//STORE 1
 		$('.address1').text(data.result[0].address_line_1);
 		$('.cityPostal1').text(data.result[0].city + ', ' + data.result[0].postal_code);
-		$('.phoneNubmber1').text(data.result[0].telephone);
+		$('.phoneNumber1').text(data.result[0].telephone);
 		//store hours
 		var store1Hours = dayWeek(data.result[0]);
 		var store1Open = msmTo12time(store1Hours[0]);
@@ -48,7 +48,7 @@ app.stores = function(location){
 		//STORE 2
 		$('.address2').text(data.result[1].address_line_1);
 		$('.cityPostal2').text(data.result[1].city + ', ' + data.result[1].postal_code);
-		$('.phoneNubmber2').text(data.result[1].telephone);
+		$('.phoneNumber2').text(data.result[1].telephone);
 		//store hours
 		var store2Hours = dayWeek(data.result[1]);
 		var store2Open = msmTo12time(store2Hours[0]);
@@ -59,7 +59,7 @@ app.stores = function(location){
 		//STORE 3
 		$('.address3').text(data.result[2].address_line_1);
 		$('.cityPostal3').text(data.result[2].city + ', ' + data.result[2].postal_code);
-		$('.phoneNubmber3').text(data.result[2].telephone);
+		$('.phoneNumber3').text(data.result[2].telephone);
 		//store hours
 		var store3Hours = dayWeek(data.result[2]);
 		var store3Open = msmTo12time(store3Hours[0]);
