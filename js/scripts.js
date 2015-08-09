@@ -34,6 +34,7 @@ app.stores = function(location){
 		app.store2 = data.result[1];
 		app.store3 = data.result[2];
 
+		
 		//	POPULATE THE ADDRESS INFO ====================
 		//STORE 1
 		$('.address1').text(data.result[0].address_line_1);
