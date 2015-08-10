@@ -4,7 +4,7 @@
 
 var app = {};
 // james' LCBO api key
-app.jamesAPI = 'MDo1ZmMzNGQ0Yy0zYWVmLTExZTUtODFkYi02YmQ0ZWM1NzJlOTQ6RDNTeEVIS1M4Zlh1M0E1UUZjMlFuRzFMWkhzbzcyeUQ2bnRN';
+app.jamesAPI = 'MDpmMDcxN2NkOC0zZjgxLTExZTUtOGYxZC0zNzlkNzljZDllMzY6YnJSd2VTS1lVYkdxWlYwb0pjSlZUM2E5U0NaV2pjTFRCU1FB';
 // james' mapbox api key
 app.jamesMapbox = 'pk.eyJ1Ijoiamltc2F1cnVzIiwiYSI6IjM0NmIzMjllNGQzYzBlODY4NTQwMjlkMTA4YmM1OWIzIn0.GzyjWKJ4nnZarMZpjPCanQ';
 // booze type
