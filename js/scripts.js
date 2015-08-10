@@ -34,7 +34,8 @@ app.stores = function(location){
 		app.store2 = data.result[1];
 		app.store3 = data.result[2];
 
-		app.mapPins(app.store1, app.store2, app.store3);
+		//Pass the store objects into a function to drop in the pins
+		//app.mapPins(app.store1, app.store2, app.store3);
 
 		//	POPULATE THE ADDRESS INFO ====================
 		//STORE 1
@@ -319,9 +320,7 @@ app.mapPins = function(store1, store2, store3){
 	    accessToken: app.alexkey
 	}).addTo(map);
 
-
-
-}
+} //mapPins function
 
 // =============================================================================
 // LOCATION LISTENER FUNCTION
