@@ -34,7 +34,8 @@ app.stores = function(location){
 		app.store2 = data.result[1];
 		app.store3 = data.result[2];
 
-		
+		app.mapPins(app.store1, app.store2, app.store3);
+
 		//	POPULATE THE ADDRESS INFO ====================
 		//STORE 1
 		$('.address1').text(data.result[0].address_line_1);
@@ -294,6 +295,35 @@ app.inStock = function(items, store){
 //10. We wabt to create an option for the user to zoom to the top of the page if they wish to search again.
 
 // =============================================================================
+// MAP PINS FUNCTION
+// =============================================================================
+
+app.mapPins = function(store1, store2, store3){
+
+	var store1Location = L.marker([store1.latitude, store1.longitude]).addTo(map);
+	var store2Location = [store2.latitude, store2.longitude];
+	var store3Location = [store3.latitude, store3.longitude];
+
+	//LEAFLET MAPBOX
+	app.alexID = 'alexandradavey.n42d3egc';
+	app.alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
+	app.alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
+	L.mapbox.accessToken = app.alexkey;
+	app.map = L.mapbox.map('map',app.alexID).setView([44.129, -79.306], 8);
+	
+	//set tile layer
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	    maxZoom: 18,
+	    id: app.alexID,
+	    accessToken: app.alexkey
+	}).addTo(map);
+
+
+
+}
+
+// =============================================================================
 // LOCATION LISTENER FUNCTION
 // =============================================================================
 app.locationListener = function(){
@@ -320,12 +350,6 @@ app.locationListener = function(){
 // =============================================================================
 app.init = function(){
 	app.locationListener();
-	//LEAFLET MAPBOX
-	var alexID = 'alexandradavey.n42d3egc';
-	var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
-	var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
-	L.mapbox.accessToken = alexkey;
-	app.map = L.mapbox.map('map',alexID).setView([44.129, -79.306], 8);
 	
 }; // end init function
 
