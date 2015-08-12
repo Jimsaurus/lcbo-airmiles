@@ -132,7 +132,8 @@ a {
   color: #f7f6ed; }
 
 body {
-  color: #f7f6ed; }
+  color: #f7f6ed;
+  overflow-x: hidden; }
 
 main {
   max-width: 900px;
@@ -154,7 +155,8 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   text-align: center;
-  color: #f7f6ed; }
+  color: #f7f6ed;
+  margin-bottom: 3%; }
   .hero-wrapper form {
     display: -webkit-box;
     display: -webkit-flex;
@@ -171,7 +173,7 @@ main {
             justify-content: center;
     text-align: center; }
     .hero-wrapper form a {
-      margin: 0 auto; }
+      margin: auto; }
     .hero-wrapper form input {
       text-align: center;
       width: 60%;
@@ -187,7 +189,8 @@ main {
 p.lead {
   margin: 10px 0 10px 0; }
   p.lead span {
-    font-size: 25px; }
+    font-size: 25px;
+    text-shadow: 1px 1px 2px #383838; }
 
 .hero-button {
   background: #bed993;
@@ -205,14 +208,14 @@ p.lead {
           justify-content: center;
   text-align: center;
   -webkit-transition: all 0.3s ease;
-          transition: all 0.3s ease; }
+          transition: all 0.3s ease;
+  border-bottom: 3px solid #759c37; }
   .hero-button:hover {
     background: #f7f6ed; }
     .hero-button:hover i {
       color: #bed993; }
   .hero-button i {
     font-size: 30px;
-    padding: 10px;
     margin: auto;
     color: #f7f6ed; }
 
@@ -264,3 +267,50 @@ p.lead {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center; }
+
+.locations-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: right;
+  background: #bed993; }
+
+.map {
+  width: 100%;
+  height: 400px;
+  background: salmon; }
+
+.stores-items-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around; }
+  .stores-items-wrapper span {
+    margin: 0 auto;
+    text-align: center;
+    background: salmon;
+    border-bottom: 3px solid #f96a59; }
+
+footer {
+  padding: 5%;
+  text-align: center;
+  background: #bed993;
+  color: #f7f6ed; }

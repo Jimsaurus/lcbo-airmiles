@@ -6,7 +6,7 @@
 // ===================================================
 // VARIABLES & MIXINS
 //====================================================
-$black: #000;   
+$black: #383838;   
 $blue: #1893cc;
 $green: #bed993;     
 $white: #f7f6ed; 
@@ -21,6 +21,7 @@ a{
 }
 body{
 	color: $white;
+	overflow-x:hidden;
 }
 
 
@@ -39,13 +40,14 @@ main{
 	justify-content: center;
 	text-align: center;
 	color: $white;
+	margin-bottom: 3%;
 	form{
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		text-align: center;
 		a{
-			margin: 0 auto;
+			margin: auto;
 		}
 		input{
 			text-align: center;
@@ -66,6 +68,7 @@ p.lead{
 	margin:10px 0 10px 0;
 	span{
 		font-size: 25px;
+		text-shadow: 1px 1px 2px $black; 
 	}
 }
 .hero-button{
@@ -78,6 +81,7 @@ p.lead{
 	justify-content: center;
 	text-align: center;
 	transition: all .3s ease;
+	border-bottom: 3px solid darken($green, 30%);
 	&:hover{
 		background: $white;
 		i{
@@ -86,7 +90,6 @@ p.lead{
 	}
 	i{
 		font-size: 30px;
-		padding: 10px;
 		margin: auto;
 		color: $white;
 	}
@@ -114,6 +117,51 @@ p.lead{
 	justify-content: center;
 	align-items:center;
 }
+
+// ===================================================
+// LOCATION STYLES
+// ===================================================
+
+.locations-wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: right;
+	background: $green;
+}
+
+.map{
+	width: 100%;
+	height: 400px;
+	background: salmon;
+}
+.stores-items-wrapper{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	span{
+		margin: 0 auto;
+		text-align: center;
+		background: salmon;
+		border-bottom: 3px solid darken(salmon, 5%);
+	}
+}
+
+// ===================================================
+// FOOTER STYLES
+// ===================================================
+
+footer{
+	padding: 5%;
+	text-align: center;
+	background: $green;
+	color: $white;
+}
+
+
+
+
+
 
 
 
