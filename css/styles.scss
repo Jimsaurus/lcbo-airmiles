@@ -1,16 +1,31 @@
+// ===================================================
 // IMPORT SETUP STYLES
-//===================================================
+//====================================================
 @import "setup";
 
-// VARIABLES
-//===================================================
+// ===================================================
+// VARIABLES & MIXINS
+//====================================================
 $black: #000;   
 $blue: #1893cc;
 $green: #bed993;     
 $white: #f7f6ed; 
 
 
+// ===================================================
 // GENERAL STYLES
+// ===================================================
+a{
+	text-decoration: none;
+	color: $white;
+}
+body{
+	color: $white;
+}
+
+
+// ===================================================
+// HEADER STYLES
 // ===================================================
 
 main{
@@ -24,16 +39,56 @@ main{
 	justify-content: center;
 	text-align: center;
 	color: $white;
-	i{
-		color: salmon;
-		font-size: 60px;
-	}
 	form{
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		text-align: center;
-
+		a{
+			margin: 0 auto;
+		}
+		input{
+			text-align: center;
+			width: 60%;
+			margin:0 auto;
+			font-size: 20px;
+			color: $green;
+			padding: 1%;
+			border: none;
+			border-radius: 20px;
+		}
+		p{
+			margin: 0;
+		}
+	}//form
+}//hero-wrapper
+p.lead{
+	margin:10px 0 10px 0;
+	span{
+		font-size: 25px;
+	}
+}
+.hero-button{
+	background: $green;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	margin: 2% 1% 0 1%;
+	display:flex;
+	justify-content: center;
+	text-align: center;
+	transition: all .3s ease;
+	&:hover{
+		background: $white;
+		i{
+			color: $green;
+		}
+	}
+	i{
+		font-size: 30px;
+		padding: 10px;
+		margin: auto;
+		color: $white;
 	}
 }
 .hero-logo{
@@ -45,7 +100,35 @@ main{
 	width: 100%;
 	transform: rotate(-10deg);
 	padding: 5% 0;
+	i{
+		color: salmon;
+		font-size: 60px;
+	}
 	img{
 		width: 50%;
 	}
 }
+.hero-submit{
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items:center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

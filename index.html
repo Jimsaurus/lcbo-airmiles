@@ -46,17 +46,19 @@ HERO
 
 		<div class="hero-logo">
 			<img src="assets/lcbo-logo.svg" alt="lcbo logo">
-			<i class="fa fa-heart"></i>
+			<i class="fa fa-heart animated infinite pulse"></i>
 			<img src="assets/airmiles-cloud.png" alt="airmiles logo">
 		</div> <!-- hero-logo -->
 
-		<p class="lead">Find products with Bonus Airmiles near you!</p>
+		<p class="lead">Find products with <span>Bonus Airmiles</span> near you!</p>
 
 		<form id="location">
-			<input type="text" class="user-input" placeholder="ie postal code, intersection, city">
-			<a href="#locations"><span class="submit">Submit</span></a>
-			<p> or </p>
-			<span class="geolocation">Use Your Location</span>
+			<input type="text" class="user-input" placeholder="ie. postal code, intersection, city ...">
+			<div class="hero-submit">
+				<span class="submit hero-button"><a href="#locations"><i class="fa fa-check"></i></a></span>
+				<!-- <p> or use your current location <i class="fa fa-level-down"></i></p> -->
+				<span class="geolocation hero-button"><i class="fa fa-globe"></i></span>
+			</div><!-- hero-submit -->
 		</form><!-- inputArea -->
 
 	</section><!-- hero-wrapper -->
@@ -66,25 +68,25 @@ LOCATIONS
 
 	<section id="locations" class="locations-wrapper">
 
-		<div class="stores"> 
-			<div class="storesTop clearfix">
+		<div class="stores-wrapper"> 
+			<div class="stores-header">
 				<h3>Stores Closest to You</h3>
-				<h4>Select a store to view available <span class="block"></span>Air Miles promotions</h4>
-			</div><!-- /.storesTop -->
-			<div class="storesBottom clearfix">
-				<div class="store store1 clearfix">
-					<div class="storeLeft store1Left">
+			</div><!-- stores-header -->
+
+			<div class="stores-items-wrapper">
+				<div class="store store1">
+					<div class="store-left">
 						<i class="fa fa-map-marker"></i>
-					</div> <!-- /.storeLeft -->
-					<div class="storeRight store1Right">
+					</div> <!-- store-left -->
+					<div class="store-right">
 						<p class="address1">Store Street Address</p>
 						<p class="cityPostal1">City and Postal Code</p>
 						<p class="phoneNumber1">Phone Number</p>
 						<p class="openHours1">Opening Hours Today</p>
-					</div> <!-- /.storeRight -->
-				</div> <!-- /.store1 -->
+					</div> <!-- store-right -->
+				</div> <!-- store1 -->
 
-				<div class="store store2 clearfix">
+				<div class="store store2">
 					<div class="storeLeft store2Left">
 						<i class="fa fa-map-marker"></i>
 					</div> <!-- /.storeLeft -->
@@ -96,7 +98,7 @@ LOCATIONS
 					</div> <!-- /.storeRight -->
 				</div> <!-- /.store2 -->
 
-				<div class="store store3 clearfix">
+				<div class="store store3">
 					<div class="storeLeft store3Left">
 						<i class="fa fa-map-marker"></i>
 					</div> <!-- /.storeLeft -->
@@ -107,11 +109,10 @@ LOCATIONS
 						<p class="openHours3">Opening Hours Today</p>
 					</div> <!-- /.storeRight -->
 				</div> <!-- /.store3 -->
-
 			</div><!-- /.storesBottom -->
-		</div><!-- stores -->
-		<div class="map" id="map">
-		</div><!-- map -->
+		</div><!-- stores-wrapper -->
+
+		<div id="map" class="map"></div><!-- map -->
 	</section><!-- locations -->
 
 <!-- ==============================================================
