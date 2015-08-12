@@ -29,104 +29,91 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.min.css">
 	<!-- custom styles -->
 	<link rel="stylesheet" href="css/styles.css">
-	<style type="text/css">
-        html, body, #map-canvas { height: 500px; margin: 0; padding: 0;}
-    </style>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc">
-    </script>
 </head>
 <body>
+<main class="main-wrapper">
 <!-- ==============================================================
-START OF BODY 
+HEADER
 =====================================================================-->
+	<header class="header-wrapper">
 
+	</header>
 
-	<div class="wrapper clearfix">
-		<header class="grapes">
-			<img src="images/LCBO-logo.svg" alt="LCBO 2015 logo">
-		</header>
-
-
-<!-- EVERYTHING UNDER HERE IS GOOD -->
-
-
-		<section class="blackBar"></section><!-- the black bar under the header -->
 <!-- ==============================================================
-USER INPUT SECTION
+HERO
 =====================================================================-->
-		<section class="airMiles clearfix">
-			<div class="airMilesTop clearfix">
-				<div class="airMilesLogo">
-					<img src="images/airMilesCloud.png" alt="The Air Miles Logo set on a white cloud">
-				</div>
-				<div class="airMilesTitle">
-					<h1>Discover this week's Air Miles Promotions closest to you!</h1>
-				</div><!-- airMilesTitle -->
-			</div>
-			<form id="location">
-				<input type="text" class="user-input" placeholder="Enter your Postal Code">
-				<a href="#locations"><button class="submit">Submit</button></a>
-				<h2> or </h2>
-				<button>Use Your Location</button>
-			</form><!-- inputArea -->
-		</section><!-- airMiles -->
+	<section class="hero-wrapper">
+
+		<div class="hero-logo">
+			<img src="assets/lcbo-logo.svg" alt="lcbo logo">
+			<i class="fa fa-heart"></i>
+			<img src="assets/airmiles-cloud.png" alt="airmiles logo">
+		</div> <!-- hero-logo -->
+
+		<p class="lead">Find products with Bonus Airmiles near you!</p>
+
+		<form id="location">
+			<input type="text" class="user-input" placeholder="ie postal code, intersection, city">
+			<a href="#locations"><span class="submit">Submit</span></a>
+			<p> or </p>
+			<span class="geolocation">Use Your Location</span>
+		</form><!-- inputArea -->
+
+	</section><!-- hero-wrapper -->
 <!-- ==============================================================
 LOCATIONS
 =====================================================================-->
-		<section class="blackBar"></section><!-- the black bar under the header -->
 
-		<section id="locations" class="locations hidden clearfix">
+	<section id="locations" class="locations-wrapper">
 
-			<div class="stores"> 
-				<div class="storesTop clearfix">
-					<h3>Stores Closest to You</h3>
-					<h4>Select a store to view available <span class="block"></span>Air Miles promotions</h4>
-				</div><!-- /.storesTop -->
-				<div class="storesBottom clearfix">
-					<div class="store store1 clearfix">
-						<div class="storeLeft store1Left">
-							<i class="fa fa-map-marker"></i>
-						</div> <!-- /.storeLeft -->
-						<div class="storeRight store1Right">
-							<p class="address1">Store Street Address</p>
-							<p class="cityPostal1">City and Postal Code</p>
-							<p class="phoneNumber1">Phone Number</p>
-							<p class="openHours1">Opening Hours Today</p>
-						</div> <!-- /.storeRight -->
-					</div> <!-- /.store1 -->
+		<div class="stores"> 
+			<div class="storesTop clearfix">
+				<h3>Stores Closest to You</h3>
+				<h4>Select a store to view available <span class="block"></span>Air Miles promotions</h4>
+			</div><!-- /.storesTop -->
+			<div class="storesBottom clearfix">
+				<div class="store store1 clearfix">
+					<div class="storeLeft store1Left">
+						<i class="fa fa-map-marker"></i>
+					</div> <!-- /.storeLeft -->
+					<div class="storeRight store1Right">
+						<p class="address1">Store Street Address</p>
+						<p class="cityPostal1">City and Postal Code</p>
+						<p class="phoneNumber1">Phone Number</p>
+						<p class="openHours1">Opening Hours Today</p>
+					</div> <!-- /.storeRight -->
+				</div> <!-- /.store1 -->
 
-					<div class="store store2 clearfix">
-						<div class="storeLeft store2Left">
-							<i class="fa fa-map-marker"></i>
-						</div> <!-- /.storeLeft -->
-						<div class="storeRight store2Right">
-							<p class="address2">Store Street Address</p>
-							<p class="cityPostal2">City and Postal Code</p>
-							<p class="phoneNumber2">Phone Number</p>
-							<p class="openHours2">Opening Hours Today</p>
-						</div> <!-- /.storeRight -->
-					</div> <!-- /.store2 -->
+				<div class="store store2 clearfix">
+					<div class="storeLeft store2Left">
+						<i class="fa fa-map-marker"></i>
+					</div> <!-- /.storeLeft -->
+					<div class="storeRight store2Right">
+						<p class="address2">Store Street Address</p>
+						<p class="cityPostal2">City and Postal Code</p>
+						<p class="phoneNumber2">Phone Number</p>
+						<p class="openHours2">Opening Hours Today</p>
+					</div> <!-- /.storeRight -->
+				</div> <!-- /.store2 -->
 
-					<div class="store store3 clearfix">
-						<div class="storeLeft store3Left">
-							<i class="fa fa-map-marker"></i>
-						</div> <!-- /.storeLeft -->
-						<div class="storeRight store3Right">
-							<p class="address3">Store Street Address</p>
-							<p class="cityPostal3">City and Postal Code</p>
-							<p class="phoneNumber3">Phone Number</p>
-							<p class="openHours3">Opening Hours Today</p>
-						</div> <!-- /.storeRight -->
-					</div> <!-- /.store3 -->
+				<div class="store store3 clearfix">
+					<div class="storeLeft store3Left">
+						<i class="fa fa-map-marker"></i>
+					</div> <!-- /.storeLeft -->
+					<div class="storeRight store3Right">
+						<p class="address3">Store Street Address</p>
+						<p class="cityPostal3">City and Postal Code</p>
+						<p class="phoneNumber3">Phone Number</p>
+						<p class="openHours3">Opening Hours Today</p>
+					</div> <!-- /.storeRight -->
+				</div> <!-- /.store3 -->
 
-				</div><!-- /.storesBottom -->
-			</div><!-- stores -->
-			<div class="map" id="map">
-			</div><!-- map -->
-		</section><!-- locations -->
+			</div><!-- /.storesBottom -->
+		</div><!-- stores -->
+		<div class="map" id="map">
+		</div><!-- map -->
+	</section><!-- locations -->
 
-		<section class="blackBar"></section><!-- the black bar under the header -->
 <!-- ==============================================================
 PROMOTIONS
 =====================================================================-->
@@ -156,7 +143,7 @@ FOOTER
 	<footer>
 		<p>&copy 2015 Alex Davey, James McDermid, and Anya Craig</p>
 	</footer>
-
+</main> <!-- end of main wrapper -->
 	<!-- =============================================================
 	SCRIPTS
 	================================================================ -->
