@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
+var autoprefixer = require('gulp-autoprefixer');
 
 //setup gulp task....can be named anything...we named it styles
 gulp.task('styles', function(){
@@ -14,6 +15,8 @@ gulp.task('styles', function(){
 			.pipe( sass().on('error', sass.logError) )
 			// concat() takes css data and creates a file to hold data
 			.pipe(concat('styles.css'))
+			//autoprefixer
+			.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
 			// gulp.dest() tells concat where to put finished css file!
 			.pipe(gulp.dest('css/'));
 });
@@ -21,7 +24,7 @@ gulp.task('styles', function(){
 gulp.task('jshint', function(){
 	return gulp.src('js/*.js')
 		.pipe(jshint())
-		.pipe(jshint.reporter('default'));
+		.pipe(jshint.reporter('jshint-stylish'));
 
 });
 gulp.task('watch', function(){
@@ -29,4 +32,4 @@ gulp.task('watch', function(){
 	gulp.watch('js/*.js', ['jshint']);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['styles', 'jshint', 'watch']);

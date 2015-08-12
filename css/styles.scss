@@ -13,3 +13,39 @@ $white: #f7f6ed;
 // GENERAL STYLES
 // ===================================================
 
+main{
+	max-width: 900px;
+	margin:0 auto;
+	background: $blue;
+}
+.hero-wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	color: $white;
+	i{
+		color: salmon;
+		font-size: 60px;
+	}
+	form{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+
+	}
+}
+.hero-logo{
+	display: flex;
+	flex-direction: column;
+	justify-content:center;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+	transform: rotate(-10deg);
+	padding: 5% 0;
+	img{
+		width: 50%;
+	}
+}

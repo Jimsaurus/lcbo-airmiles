@@ -75,7 +75,7 @@ app.stores = function(location){
 		
 	}); //end results function
 	
-} // end stores function
+}; // end stores function
 // =============================================================================
 // STORE SELECTOR FUNCTION
 // =============================================================================
@@ -99,7 +99,7 @@ app.storeSelector = function(){
 		app.promoBooze(app.store3, 'spirits');
 	});
 
-}
+}; //end store selector function
 
 
 
@@ -122,33 +122,26 @@ function dayWeek(store){
 			//so in this case dayweek() will return the open and close times for the passed in store as an array
 			console.log('sunday');
 			return [store.sunday_open, store.sunday_close];
-			break;
 		case 1:
 			console.log('monday');
 			return [store.monday_open, store.monday_close];
-			break;
 		case 2:
 			console.log('tuesday');
 			return [store.tuesday_open, store.tuesday_close];
-			break;
 		case 3:
 			console.log('wednesday');
 			return [store.wednesday_open, store.wednesday_close];
-			break;
 		case 4:
 			console.log('thursday');
 			return [store.thursday_open, store.thursday_close];
-			break;
 		case 5:
 			console.log('friday');
 			return [store.friday_open, store.friday_close];
-			break;
 		case 6:
 			console.log('saturday');
 			return [store.saturday_open, store.saturday_close];
-			break;
 	}//end of switch statement
-}; //end dayweek function
+} //end dayweek function
 
 //this function takes the minutes since midnight and creates a time based on a 24 hour clock
 function msmTo24time(msm) {
@@ -164,15 +157,16 @@ function msmTo12time(msm) {
 	var h12  = (0 == h24 ? 12 : (h24 > 12 ? (h24 - 10) - 2 : h24));
 	h12 = Math.floor(h12);
 	var ampm = (h24 >= 12 ? 'PM' : 'AM');
+	var mins = '';
 	//if minutes is 0 make it 00
 	if (time[1] === 0){
-		var mins = '00';
+		mins = '00';
 	}else{
 		mins = time[1];
 	}
 	// returns hours, minutes and am or pm in an array
 	return [h12, mins, ampm];
-};// end opening hours function
+}// end opening hours function
 
 
 
@@ -269,31 +263,9 @@ app.inStock = function(items, store){
 			}
 			
 		}); //end results function
-	});
+	});//end each loop
 
-}//instock function
-
-//2. (as another option)We want the user to enable "geo location" to receive their location via 
-//GoogleMaps / Map Box, by clicking a button.
-
-
-//3. We want to 'smooth scroll' their results (whichever method they selected) further down the page.
-
-//4. We want to return 3 LCBO locations within their postal code parameters.
-
-//5. We want to return a map displaying their LCBO locations using markers.
-
-//use jquery to hide the div - > SHOW the hidden div BEFORE the map is revealed, make
-//the map slide in after we have shown the div. make the div first AND THEN put the map on the page.
-
-//6. Once a store has been selected by the user, we will 'smooth scroll' to display the airmiles promotions, further down the page.
-
-
-//8. We want to display the available promotion information in a div (rgba) within the image.
-
-//9. We want to create an option for the user to select another store.
-
-//10. We wabt to create an option for the user to zoom to the top of the page if they wish to search again.
+};//instock function
 
 // =============================================================================
 // MAP PINS FUNCTION
@@ -320,7 +292,7 @@ app.mapPins = function(store1, store2, store3){
 	    accessToken: app.alexkey
 	}).addTo(map);
 
-} //mapPins function
+}; //mapPins function
 
 // =============================================================================
 // LOCATION LISTENER FUNCTION
@@ -341,8 +313,7 @@ app.locationListener = function(){
 	    }, 1000);
 	});
 	//smooth scroll
-
-}
+};
 
 // =============================================================================
 // INIT FUNCTION
