@@ -152,6 +152,17 @@ p.lead{
 		}//hover
 	}//span
 }//stores-items-wrapper
+.store-bottom{
+	text-align: center;
+	p{
+		margin: 0;
+		margin-top: 5px;
+		&:first-child{
+			text-shadow: 1px 1px 2px $black;
+			font-size: 18px;
+		} //first-child
+	} //p
+}//store-bottom
 
 
 // ===================================================
@@ -163,6 +174,7 @@ p.lead{
 .gallery-cell{
 	width: 25%;
 	margin-right: 10px;
+	position: relative;
 	//height: 400px;
 	img{
 		width:100%;
@@ -171,6 +183,32 @@ p.lead{
 	p{
 		margin: 5px 0;
 	}
+} //gallery-cell
+.reward-miles{
+	position: absolute;
+	top: 7px;
+	right: 7px;
+	background: $blue;
+	color: $white;
+	border-radius: 50%;
+	width: 70px;
+	height: 70px;
+	font-size: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: rotate(10deg);
+	flex-direction: column;
+	border-bottom: 3px solid darken($blue, 30%);
+	p{
+		margin:0;
+		margin-bottom: 1px;
+	}
+	.bonus-number{
+		font-size: 23px;
+		text-shadow: 1px 1px 2px $black; 
+	}
+
 }
 
 

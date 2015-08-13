@@ -81,19 +81,19 @@ app.stores = function(location){
 // =============================================================================
 app.storeSelector = function(){
 	$('.store1').on('click', function(){
-		$('.store-location').text(app.store1.address_line_1);
+		$('.store-location').text(app.store1.address_line_1).fadeIn();
 		app.promoBooze(app.store1, 'beer');
 		app.promoBooze(app.store1, 'wine');
 		app.promoBooze(app.store1, 'spirits');
 	});
 	$('.store2').on('click', function(){
-		$('.store-location').text(app.store2.address_line_1);
+		$('.store-location').text(app.store2.address_line_1).fadeIn();
 		app.promoBooze(app.store2, 'beer');
 		app.promoBooze(app.store2, 'wine');
 		app.promoBooze(app.store2, 'spirits');
 	});
 	$('.store3').on('click', function(){
-		$('.store-location').text(app.store3.address_line_1);
+		$('.store-location').text(app.store3.address_line_1).fadeIn();
 		app.promoBooze(app.store3, 'beer');
 		app.promoBooze(app.store3, 'wine');
 		app.promoBooze(app.store3, 'spirits');
@@ -219,7 +219,7 @@ app.inStock = function(items, store){
 	$gallery.flickity('remove', $('.gallery-cell'));
 	//scroll page down to see results =====================================
     $('html, body').animate({
-        scrollTop: $('#promotions').offset().top
+        scrollTop: $('#locations').offset().top
     }, 1000);
 	//for each product on promotion we check the stock at the store
 	$.each(items, function(index, value){
@@ -241,7 +241,7 @@ app.inStock = function(items, store){
 				//construct flickity slide
 				var itemImg = $('<img>').attr('src', value.image_url);
 				var itemName = $('<p>').text(value.name);
-				var itemMiles = $('<p>').text('Bonus reward miles: ' + value.bonus_reward_miles);
+				var itemMiles = $('<span>').html('<p class="bonus-number">' + value.bonus_reward_miles +'</p>'+ '<p>BONUS</p><p>MILES</p>').addClass("reward-miles");
 				var itemPackage = $('<p>').text(value.package);
 
 				var itemPrice = $('<p>').text('$' + ((value.price_in_cents / 100).toFixed(2)));
@@ -250,7 +250,7 @@ app.inStock = function(items, store){
 
 				//append the new gallery-cells into the gallery
 				
-				$gallery.flickity('append', galleryCell);
+				$gallery.flickity('append', galleryCell).fadeIn();
 
 				// ===================================================================
 				//scroll page down to see results =====================================

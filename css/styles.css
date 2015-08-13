@@ -312,17 +312,65 @@ p.lead {
       .stores-items-wrapper span:hover i {
         color: #f7f6ed; }
 
+.store-bottom {
+  text-align: center; }
+  .store-bottom p {
+    margin: 0;
+    margin-top: 5px; }
+    .store-bottom p:first-child {
+      text-shadow: 1px 1px 2px #383838;
+      font-size: 18px; }
+
 .promotions-title {
   text-align: center; }
 
 .gallery-cell {
   width: 25%;
-  margin-right: 10px; }
+  margin-right: 10px;
+  position: relative; }
   .gallery-cell img {
     width: 100%;
     border-radius: 25px; }
   .gallery-cell p {
     margin: 5px 0; }
+
+.reward-miles {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  background: #1893cc;
+  color: #f7f6ed;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  font-size: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: rotate(10deg);
+      -ms-transform: rotate(10deg);
+          transform: rotate(10deg);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom: 3px solid #083043; }
+  .reward-miles p {
+    margin: 0;
+    margin-bottom: 1px; }
+  .reward-miles .bonus-number {
+    font-size: 23px;
+    text-shadow: 1px 1px 2px #383838; }
 
 footer {
   padding: 5%;
