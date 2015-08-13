@@ -282,7 +282,6 @@ p.lead {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  text-align: right;
   background: #bed993; }
 
 .map {
@@ -308,6 +307,22 @@ p.lead {
     text-align: center;
     background: salmon;
     border-bottom: 3px solid #f96a59; }
+    .stores-items-wrapper span:hover {
+      background: #f96a59; }
+      .stores-items-wrapper span:hover i {
+        color: #f7f6ed; }
+
+.promotions-title {
+  text-align: center; }
+
+.gallery-cell {
+  width: 25%;
+  margin-right: 10px; }
+  .gallery-cell img {
+    width: 100%;
+    border-radius: 25px; }
+  .gallery-cell p {
+    margin: 5px 0; }
 
 footer {
   padding: 5%;

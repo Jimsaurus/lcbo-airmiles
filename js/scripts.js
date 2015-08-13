@@ -81,19 +81,19 @@ app.stores = function(location){
 // =============================================================================
 app.storeSelector = function(){
 	$('.store1').on('click', function(){
-		//remove old flickity cells
+		$('.store-location').text(app.store1.address_line_1);
 		app.promoBooze(app.store1, 'beer');
 		app.promoBooze(app.store1, 'wine');
 		app.promoBooze(app.store1, 'spirits');
 	});
 	$('.store2').on('click', function(){
-		//remove old flickity cells
+		$('.store-location').text(app.store2.address_line_1);
 		app.promoBooze(app.store2, 'beer');
 		app.promoBooze(app.store2, 'wine');
 		app.promoBooze(app.store2, 'spirits');
 	});
 	$('.store3').on('click', function(){
-		//remove old flickity cells
+		$('.store-location').text(app.store3.address_line_1);
 		app.promoBooze(app.store3, 'beer');
 		app.promoBooze(app.store3, 'wine');
 		app.promoBooze(app.store3, 'spirits');
@@ -154,7 +154,7 @@ function msmTo24time(msm) {
 function msmTo12time(msm) {
 	var time = msmTo24time(msm);
 	var h24  = time[0];
-	var h12  = (0 == h24 ? 12 : (h24 > 12 ? (h24 - 10) - 2 : h24));
+	var h12  = (0 === h24 ? 12 : (h24 > 12 ? (h24 - 10) - 2 : h24));
 	h12 = Math.floor(h12);
 	var ampm = (h24 >= 12 ? 'PM' : 'AM');
 	var mins = '';

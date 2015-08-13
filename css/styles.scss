@@ -126,7 +126,6 @@ p.lead{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	text-align: right;
 	background: $green;
 }
 
@@ -144,8 +143,36 @@ p.lead{
 		text-align: center;
 		background: salmon;
 		border-bottom: 3px solid darken(salmon, 5%);
+		&:hover{
+			background: darken(salmon, 5%);
+			i{
+				color: $white;
+			}
+			
+		}//hover
+	}//span
+}//stores-items-wrapper
+
+
+// ===================================================
+// GALLERY STYLES
+// ===================================================
+.promotions-title{
+	text-align: center;
+}
+.gallery-cell{
+	width: 25%;
+	margin-right: 10px;
+	//height: 400px;
+	img{
+		width:100%;
+		border-radius: 25px;
+	}
+	p{
+		margin: 5px 0;
 	}
 }
+
 
 // ===================================================
 // FOOTER STYLES
