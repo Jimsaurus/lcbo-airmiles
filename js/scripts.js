@@ -10,7 +10,22 @@ app.jamesMapbox = 'pk.eyJ1Ijoiamltc2F1cnVzIiwiYSI6IjM0NmIzMjllNGQzYzBlODY4NTQwMj
 // booze type
 app.boozeType = 'spirits';
 
+// =============================================================================
+// LOCATION LISTENER FUNCTION
+// =============================================================================
+app.locationListener = function(){
+	// when the location form is submitted it starts the chain of functions!
+	$( "#location" ).submit(function( event ) {
+		//stop default action
+		event.preventDefault();
+		//get value from input field
+		app.postal = $('.user-input').val();
+		//just for test purposes so you don't have to keep putting in a place uncomment hamilton 
+		//app.postal = 'hamilton';
+		app.stores(app.postal);
+	});
 
+};
 // =============================================================================
 // STORES FUNCTION : returns stores closest to the user input
 // =============================================================================
@@ -71,6 +86,8 @@ app.stores = function(location){
 		
 		//run a function that determines which location is pressed then displays the booze
 		app.storeSelector();
+
+		app.initMap(app.store1, app.store2, app.store3);
 		
 		
 	}); //end results function
@@ -100,9 +117,6 @@ app.storeSelector = function(){
 	});
 
 }; //end store selector function
-
-
-
 
 
 // =============================================================================
@@ -217,10 +231,6 @@ app.inStock = function(items, store){
 	var $gallery = $('.gallery').flickity().flickity( 'select', 2 );
 	//remove old gallery-cells before adding new ones!
 	$gallery.flickity('remove', $('.gallery-cell'));
-	//scroll page down to see results =====================================
-    $('html, body').animate({
-        scrollTop: $('#locations').offset().top
-    }, 1000);
 	//for each product on promotion we check the stock at the store
 	$.each(items, function(index, value){
 		$.ajax({
@@ -294,26 +304,50 @@ app.mapPins = function(store1, store2, store3){
 
 }; //mapPins function
 
+
 // =============================================================================
-// LOCATION LISTENER FUNCTION
+// GOOGLE MAPS FUNCTION
 // =============================================================================
-app.locationListener = function(){
-	// when the location form is submitted it starts the chain of functions!
-	$( "#location" ).submit(function( event ) {
-		//stop default action
-		event.preventDefault();
-		//get value from input field
-		app.postal = $('.user-input').val();
-		//just for test purposes so you don't have to keep putting in a place uncomment hamilton 
-		//app.postal = 'hamilton';
-		app.stores(app.postal);
-		//scroll page down to see results =====================================
-	    $('html, body').animate({
-	        scrollTop: $('#locations').offset().top
-	    }, 1000);
-	});
-	//smooth scroll
-};
+
+var marker;
+var marker2;
+var marker3;
+//pass in current location and closets 3 stores
+app.initMap = function(store1, store2, store3) {
+  var map = new google.maps.Map(document.getElementById('googleMap'), {
+    zoom: 12,
+    center: {lat: store1.latitude, lng: store1.longitude}
+  });
+
+  marker = new google.maps.Marker({
+    map: map,
+    draggable: true,
+    animation: google.maps.Animation.DROP,
+    position: {lat: store1.latitude, lng: store1.longitude}
+  });
+  marker2 = new google.maps.Marker({
+    map: map,
+    draggable: true,
+    animation: google.maps.Animation.DROP,
+    position: {lat: store2.latitude, lng: store2.longitude}
+  });
+  marker3 = new google.maps.Marker({
+    map: map,
+    draggable: true,
+    animation: google.maps.Animation.DROP,
+    position: {lat: store3.latitude, lng: store3.longitude}
+  });
+  marker.addListener('click', toggleBounce);
+};//end initMap
+
+//bounce animation
+function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
 
 // =============================================================================
 // INIT FUNCTION
