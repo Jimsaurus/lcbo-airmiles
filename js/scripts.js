@@ -88,33 +88,24 @@ app.stores = function(location){
 		
 		
 	}); //end results function
-	
 }; // end stores function
 // =============================================================================
-// STORE SELECTOR FUNCTION
+// STORE SELECTOR LISTENER
 // =============================================================================
 app.storeSelector = function(){
 	$('.store1').on('click', function(){
 		$('.store-location').text(app.store1.address_line_1).fadeIn();
-		app.promoBooze(app.store1, 'beer');
-		app.promoBooze(app.store1, 'wine');
-		app.promoBooze(app.store1, 'spirits');
+		app.promoBooze(app.store1, 'beer', 'wine', 'spirits');
 	});
 	$('.store2').on('click', function(){
 		$('.store-location').text(app.store2.address_line_1).fadeIn();
-		app.promoBooze(app.store2, 'beer');
-		app.promoBooze(app.store2, 'wine');
-		app.promoBooze(app.store2, 'spirits');
+		app.promoBooze(app.store2, 'beer', 'wine', 'spirits');
 	});
 	$('.store3').on('click', function(){
 		$('.store-location').text(app.store3.address_line_1).fadeIn();
-		app.promoBooze(app.store3, 'beer');
-		app.promoBooze(app.store3, 'wine');
-		app.promoBooze(app.store3, 'spirits');
+		app.promoBooze(app.store3, 'beer', 'wine', 'spirits');
 	});
-
 }; //end store selector function
-
 
 // =============================================================================
 // OPENING HOURS FUNCTION
@@ -186,9 +177,10 @@ function msmTo12time(msm) {
 // =============================================================================
 
 //this function is passed a store and finds the 5 beers with the most airmiles reward miles
-app.promoBooze = function(store, booze){
+app.promoBooze = function(store, beer, wine, spirits){
 
-	$.ajax({
+	//store the 3 calls in promises
+	var beerPromise = $.ajax({
 		url: 'http://lcboapi.com/products',
 		type: 'GET',
 		dataType: 'jsonp',
@@ -198,23 +190,60 @@ app.promoBooze = function(store, booze){
 			where: 'has_bonus_reward_miles',
 			where_not: 'is_dead',
 			order: 'bonus_reward_miles',
-			q: booze
+			q: beer
 		}
-	}).then(function(data) {
+	});
+	var winePromise = $.ajax({
+		url: 'http://lcboapi.com/products',
+		type: 'GET',
+		dataType: 'jsonp',
+		data: {
+			access_key: app.jamesAPI,
+			per_page: 10,
+			where: 'has_bonus_reward_miles',
+			where_not: 'is_dead',
+			order: 'bonus_reward_miles',
+			q: wine
+		}
+	});
+	var spiritsPromise = $.ajax({
+		url: 'http://lcboapi.com/products',
+		type: 'GET',
+		dataType: 'jsonp',
+		data: {
+			access_key: app.jamesAPI,
+			per_page: 10,
+			where: 'has_bonus_reward_miles',
+			where_not: 'is_dead',
+			order: 'bonus_reward_miles',
+			q: spirits
+		}
+	});
+	//pass those promises when loaded into a .when.done function
+	$.when([beerPromise, winePromise, spiritsPromise])
+		.done(function(data){
+			console.log(data);
+
+
+			//var boozeItems = beerArray.concat(wineArray, spiritsArray);
+			//console.log(boozeItems);
+			//pass the resulting array of booze objects into a function to check the stock and pass in the store from before
+			//app.inStock(boozeItems, store);
+		})//done callback
+		.fail(function(error){
+			console.log(error);
+		});
+
+	//.then(function(data) {
 		//console.log('Beers on promotion!!');
 		//console.log the 5 beers found
 		//console.log(data.result);
-		var boozeItems = data.result;
-		//app.promoBeer_1 = data.result[0];
-		//app.promoBeer_2 = data.result[1];
-		//app.promoBeer_3 = data.result[2];
-		//app.promoBeer_4 = data.result[3];
-		//app.promoBeer_5 = data.result[4];
-		//pass the resulting array of beer objects into a function to check the stock and pass in the store from before
-		app.inStock(boozeItems, store);
-	});//end results function
+		//var boozeItems = data.result;
+		//pass the resulting array of booze objects into a function to check the stock and pass in the store from before
+		//app.inStock(boozeItems, store);
+	//});//end results function
 	
-}; //end TEST function
+}; //end promoBooze function
 
 
 // =============================================================================
