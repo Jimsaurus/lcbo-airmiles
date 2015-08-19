@@ -139,6 +139,10 @@ p.lead{
 	height: 400px;
 	background: salmon;
 }
+.store-top{
+	position: relative;
+	padding-bottom: 15px;
+}
 .stores-items-wrapper{
 	display: flex;
 	flex-direction: row;
@@ -148,6 +152,9 @@ p.lead{
 		text-align: center;
 		background: salmon;
 		border-bottom: 3px solid darken(salmon, 5%);
+		position: absolute;
+		top: -33px;
+		left: 38%;
 		&:hover{
 			background: darken(salmon, 5%);
 			i{
@@ -159,6 +166,7 @@ p.lead{
 }//stores-items-wrapper
 .store-bottom{
 	text-align: center;
+	padding-bottom: 25px;
 	p{
 		margin: 0;
 		margin-top: 5px;
@@ -176,6 +184,9 @@ p.lead{
 .promotions-title{
 	text-align: center;
 }
+.gallery{
+	padding: 25px 0;
+}
 .gallery-cell{
 	width: 25%;
 	margin-right: 10px;
@@ -187,8 +198,32 @@ p.lead{
 	}
 	p{
 		margin: 5px 0;
-	}
+		text-align: center;
+		&:nth-child(4){
+			font-size: 12px;
+			position: absolute;
+			top:190px;
+			padding: 5px;
+			padding-left: 10px;
+			right:0;
+			background: salmon;
+
+		}//nth-child
+	}//p
 } //gallery-cell
+.flickity-page-dots{
+	bottom: 8px;
+}
+.item-price{
+	position: absolute;
+	top: 150px;
+	right: 0;
+	background: $green;
+	padding: 7px;
+	padding-left: 15px;
+	color: $black;
+	font-size: 20px;
+}
 .reward-miles{
 	position: absolute;
 	top: 7px;
@@ -213,8 +248,7 @@ p.lead{
 		font-size: 23px;
 		text-shadow: 1px 1px 2px $black; 
 	}
-
-}
+}//reward-miles
 
 
 // ===================================================
@@ -222,9 +256,9 @@ p.lead{
 // ===================================================
 
 footer{
-	padding: 5%;
+	padding: .5%;
 	text-align: center;
-	background: $green;
+	background: salmon;
 	color: $white;
 }
 

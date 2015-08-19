@@ -19,6 +19,8 @@ app.locationListener = function(){
 		//just for test purposes so you don't have to keep putting in a place uncomment hamilton 
 		//app.postal = 'hamilton';
 		app.stores(app.postal);
+		//show the map
+		$('.locations-wrapper').slideDown(1000, 'swing');
 	});
 
 };
@@ -40,6 +42,7 @@ app.stores = function(location){
 		//data is the result of the api call....in this case it is an array with 5 objects representing locations
 	}).then(function(data) {
 		console.log('These are the 5 stores closest to the USER');
+
 		//just grab the first location to start
 		app.store1 = data.result[0];
 		app.store2 = data.result[1];
@@ -94,15 +97,12 @@ app.stores = function(location){
 // =============================================================================
 app.storeSelector = function(){
 	$('.store1').on('click', function(){
-		$('.store-location').text(app.store1.address_line_1).fadeIn();
 		app.promoBooze(app.store1, 'beer', 'wine', 'spirits');
 	});
 	$('.store2').on('click', function(){
-		$('.store-location').text(app.store2.address_line_1).fadeIn();
 		app.promoBooze(app.store2, 'beer', 'wine', 'spirits');
 	});
 	$('.store3').on('click', function(){
-		$('.store-location').text(app.store3.address_line_1).fadeIn();
 		app.promoBooze(app.store3, 'beer', 'wine', 'spirits');
 	});
 }; //end store selector function
@@ -173,7 +173,7 @@ function msmTo12time(msm) {
 
 
 // =============================================================================
-// PRODUCTS FUNCTION : returns the products on promotion
+// PROMOBOOZE FUNCTION : returns the products on promotion
 // =============================================================================
 
 //this function is passed a store and finds the 5 beers with the most airmiles reward miles
@@ -220,7 +220,6 @@ app.promoBooze = function(store, beer, wine, spirits){
 		}
 	});
 
-
 	//pass those promises when loaded into a .when.done function
 	$.when.apply($, [beerPromise, winePromise, spiritsPromise] )
 		.done(function(beerData, wineData, spiritsData){
@@ -240,21 +239,11 @@ app.promoBooze = function(store, beer, wine, spirits){
 		.fail(function(error){
 			console.log(error);
 		});
-
-	//.then(function(data) {
-		//console.log('Beers on promotion!!');
-		//console.log the 5 beers found
-		//console.log(data.result);
-		//var boozeItems = data.result;
-		//pass the resulting array of booze objects into a function to check the stock and pass in the store from before
-		//app.inStock(boozeItems, store);
-	//});//end results function
-	
 }; //end promoBooze function
 
 
 // =============================================================================
-// INVENTORY FUNCTION : returns store inventory
+// INSTOCK FUNCTION : returns store inventory
 // =============================================================================
 app.inStock = function(items, store){
 	console.log('inStock fired');
@@ -264,7 +253,7 @@ app.inStock = function(items, store){
 	var $gallery = $('.gallery').flickity();
 	$gallery.flickity( 'select', 2 );
 	//remove old gallery-cells before adding new ones!
-	$gallery.flickity('remove', $('.gallery-cell'));
+	var cellElements = $gallery.flickity('getCellElements');
 	//for each product on promotion we check the stock at the store
 	$.each(items, function(index, value){
 		$.ajax({
@@ -285,10 +274,10 @@ app.inStock = function(items, store){
 				//construct flickity slide
 				var itemImg = $('<img>').attr('src', value.image_url);
 				var itemName = $('<p>').text(value.name);
-				var itemMiles = $('<span>').html('<p class="bonus-number">' + value.bonus_reward_miles +'</p>'+ '<p>BONUS</p><p>MILES</p>').addClass("reward-miles");
+				var itemMiles = $('<span>').html('<p class="bonus-number">' + value.bonus_reward_miles +'</p>'+ '<p>BONUS</p><p>MILES!</p>').addClass("reward-miles");
 				var itemPackage = $('<p>').text(value.package);
 
-				var itemPrice = $('<p>').text('$' + ((value.price_in_cents / 100).toFixed(2)));
+				var itemPrice = $('<span>').html('<p class="item-price">$' + ((value.price_in_cents / 100).toFixed(2)) + '</p>');
 
 				var galleryCell = $('<div>').addClass('gallery-cell').append(itemImg, itemName, itemMiles, itemPackage, itemPrice);
 
@@ -304,6 +293,7 @@ app.inStock = function(items, store){
 			}
 		}); //end results function
 	});//end each loop
+	$gallery.flickity('remove', cellElements);
 };//instock function
 
 // =============================================================================
@@ -340,7 +330,6 @@ app.initMap = function(store1, store2, store3) {
     scrollwheel: false,
     center: {lat: store1.latitude, lng: store1.longitude}
   });
-
   marker = new google.maps.Marker({
     map: map,
     draggable: true,
@@ -359,7 +348,10 @@ app.initMap = function(store1, store2, store3) {
     animation: google.maps.Animation.DROP,
     position: {lat: store3.latitude, lng: store3.longitude}
   });
+
   marker.addListener('click', toggleBounce);
+  google.maps.event.trigger(map, 'resize');
+
 };//end initMap
 
 //bounce animation
@@ -371,6 +363,14 @@ function toggleBounce() {
   }
 } //bounce function
 
+// =============================================================================
+// HIDE DIVS
+// =============================================================================
+app.hideStuff = function(){
+	$('.promotions').hide();
+	$('.locations-wrapper').hide();
+	//$().hide;
+};
 // =============================================================================
 // INIT FUNCTION
 // =============================================================================
@@ -384,6 +384,7 @@ app.init = function(){
 // =============================================================================
 $(function(){
 	console.log('document ready!');
+	//app.hideStuff();
 	app.init();
 }); // end document ready
 

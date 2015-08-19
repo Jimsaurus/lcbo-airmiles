@@ -290,6 +290,10 @@ p.lead {
   height: 400px;
   background: salmon; }
 
+.store-top {
+  position: relative;
+  padding-bottom: 15px; }
+
 .stores-items-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -307,14 +311,18 @@ p.lead {
     margin: 0 auto;
     text-align: center;
     background: salmon;
-    border-bottom: 3px solid #f96a59; }
+    border-bottom: 3px solid #f96a59;
+    position: absolute;
+    top: -33px;
+    left: 38%; }
     .stores-items-wrapper span:hover {
       background: #f96a59; }
       .stores-items-wrapper span:hover i {
         color: #f7f6ed; }
 
 .store-bottom {
-  text-align: center; }
+  text-align: center;
+  padding-bottom: 25px; }
   .store-bottom p {
     margin: 0;
     margin-top: 5px; }
@@ -325,6 +333,9 @@ p.lead {
 .promotions-title {
   text-align: center; }
 
+.gallery {
+  padding: 25px 0; }
+
 .gallery-cell {
   width: 25%;
   margin-right: 10px;
@@ -333,7 +344,29 @@ p.lead {
     width: 100%;
     border-radius: 25px; }
   .gallery-cell p {
-    margin: 5px 0; }
+    margin: 5px 0;
+    text-align: center; }
+    .gallery-cell p:nth-child(4) {
+      font-size: 12px;
+      position: absolute;
+      top: 190px;
+      padding: 5px;
+      padding-left: 10px;
+      right: 0;
+      background: salmon; }
+
+.flickity-page-dots {
+  bottom: 8px; }
+
+.item-price {
+  position: absolute;
+  top: 150px;
+  right: 0;
+  background: #bed993;
+  padding: 7px;
+  padding-left: 15px;
+  color: #383838;
+  font-size: 20px; }
 
 .reward-miles {
   position: absolute;
@@ -374,7 +407,7 @@ p.lead {
     text-shadow: 1px 1px 2px #383838; }
 
 footer {
-  padding: 5%;
+  padding: .5%;
   text-align: center;
-  background: #bed993;
+  background: salmon;
   color: #f7f6ed; }

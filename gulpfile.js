@@ -3,6 +3,7 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
 var autoprefixer = require('gulp-autoprefixer');
+var browserSync = require('browser-sync').create();
 
 //setup gulp task....can be named anything...we named it styles
 gulp.task('styles', function(){
@@ -18,18 +19,23 @@ gulp.task('styles', function(){
 			//autoprefixer
 			.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
 			// gulp.dest() tells concat where to put finished css file!
-			.pipe(gulp.dest('css/'));
+			.pipe(gulp.dest('css/'))
+			.pipe(browserSync.stream());
 });
 
 gulp.task('jshint', function(){
 	return gulp.src('js/*.js')
 		.pipe(jshint())
 		.pipe(jshint.reporter('jshint-stylish'));
-
+});
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        proxy: "localhost:8888/bootcamp-projects/week-6-project/lcbo-airmiles"
+    });
 });
 gulp.task('watch', function(){
 	gulp.watch('css/*.scss', ['styles']);
 	gulp.watch('js/*.js', ['jshint']);
 });
 
-gulp.task('default', ['styles', 'jshint', 'watch']);
+gulp.task('default', ['browser-sync', 'styles', 'jshint', 'watch']);
