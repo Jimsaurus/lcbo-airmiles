@@ -219,16 +219,23 @@ app.promoBooze = function(store, beer, wine, spirits){
 			q: spirits
 		}
 	});
+
+
 	//pass those promises when loaded into a .when.done function
-	$.when([beerPromise, winePromise, spiritsPromise])
-		.done(function(data){
-			console.log(data);
+	$.when.apply($, [beerPromise, winePromise, spiritsPromise] )
+		.done(function(beerData, wineData, spiritsData){
+			console.log(beerData[0].result);
+			console.log(wineData[0].result);
+			console.log(spiritsData[0].result);
 
+			var beerArray = beerData[0].result;
+			var wineArray = wineData[0].result;
+			var spiritsArray = spiritsData[0].result;
 
-			//var boozeItems = beerArray.concat(wineArray, spiritsArray);
+			var boozeItems = beerArray.concat(wineArray, spiritsArray);
 			//console.log(boozeItems);
 			//pass the resulting array of booze objects into a function to check the stock and pass in the store from before
-			//app.inStock(boozeItems, store);
+			app.inStock(boozeItems, store);
 		})//done callback
 		.fail(function(error){
 			console.log(error);
