@@ -5,10 +5,6 @@
 var app = {};
 // james' LCBO api key
 app.jamesAPI = 'MDo5NGU5OWUzMi00MGY3LTExZTUtOWQ5Zi1mN2NjZDJlOTc2NmE6QUZXMkdYSUpnNGhCRnNDMzBYTXR4NkhOZzU2eTUza0FpRUFI';
-// james' mapbox api key
-app.jamesMapbox = 'pk.eyJ1Ijoiamltc2F1cnVzIiwiYSI6IjM0NmIzMjllNGQzYzBlODY4NTQwMjlkMTA4YmM1OWIzIn0.GzyjWKJ4nnZarMZpjPCanQ';
-// booze type
-app.boozeType = 'spirits';
 
 // =============================================================================
 // LOCATION LISTENER FUNCTION
@@ -88,6 +84,7 @@ app.stores = function(location){
 		app.storeSelector();
 
 		app.initMap(app.store1, app.store2, app.store3);
+		app.codeAddress(app.postal);
 		
 		
 	}); //end results function
@@ -228,7 +225,8 @@ app.inStock = function(items, store){
 	console.log(items);
 	console.log(store);
 	//default flickity stuff to get it working
-	var $gallery = $('.gallery').flickity().flickity( 'select', 2 );
+	var $gallery = $('.gallery').flickity();
+	$gallery.flickity( 'select', 2 );
 	//remove old gallery-cells before adding new ones!
 	$gallery.flickity('remove', $('.gallery-cell'));
 	//for each product on promotion we check the stock at the store
@@ -260,62 +258,50 @@ app.inStock = function(items, store){
 
 				//append the new gallery-cells into the gallery
 				
-				$gallery.flickity('append', galleryCell).fadeIn();
-
-				// ===================================================================
-				//scroll page down to see results =====================================
-			    // $('html, body').animate({
-			    //     scrollTop: $('.stores').offset().top
-			    // }, 1000);
+				$gallery.flickity('append', galleryCell);
+				//reload sizes of flickity
+				$gallery.flickity('reposition');
+				$gallery.flickity('resize');
 				
 			}else if ( ( data.result.quantity <= 0 ) || (!data.result) ){
 				console.log('Sorry not in stock!');
 			}
-			
 		}); //end results function
 	});//end each loop
-
 };//instock function
 
 // =============================================================================
-// MAP PINS FUNCTION
+// GOOGLE MAPS FUNCTIONS
 // =============================================================================
-
-app.mapPins = function(store1, store2, store3){
-
-	var store1Location = L.marker([store1.latitude, store1.longitude]).addTo(map);
-	var store2Location = [store2.latitude, store2.longitude];
-	var store3Location = [store3.latitude, store3.longitude];
-
-	//LEAFLET MAPBOX
-	app.alexID = 'alexandradavey.n42d3egc';
-	app.alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
-	app.alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
-	L.mapbox.accessToken = app.alexkey;
-	app.map = L.mapbox.map('map',app.alexID).setView([44.129, -79.306], 8);
-	
-	//set tile layer
-	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-	    maxZoom: 18,
-	    id: app.alexID,
-	    accessToken: app.alexkey
-	}).addTo(map);
-
-}; //mapPins function
-
-
-// =============================================================================
-// GOOGLE MAPS FUNCTION
-// =============================================================================
-
+//declare variables to hold the 3 markers
 var marker;
 var marker2;
 var marker3;
+var geocoder;
+var map;
+//take the address entered and drop a pin
+app.codeAddress = function(address) {
+	geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': address}, function(results, status) {
+    	console.log(results);
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var location = new google.maps.Marker({
+            map: map,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+            animation: google.maps.Animation.DROP,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }; //codeAddress
 //pass in current location and closets 3 stores
 app.initMap = function(store1, store2, store3) {
-  var map = new google.maps.Map(document.getElementById('googleMap'), {
+  	map = new google.maps.Map(document.getElementById('googleMap'), {
     zoom: 12,
+    scrollwheel: false,
     center: {lat: store1.latitude, lng: store1.longitude}
   });
 
@@ -347,7 +333,7 @@ function toggleBounce() {
   } else {
     marker.setAnimation(google.maps.Animation.BOUNCE);
   }
-}
+} //bounce function
 
 // =============================================================================
 // INIT FUNCTION
