@@ -98,12 +98,25 @@ app.stores = function(location){
 app.storeSelector = function(){
 	$('.store1').on('click', function(){
 		app.promoBooze(app.store1, 'beer', 'wine', 'spirits');
+		//add the selected class and remove it from the other 2 stores
+		$('.store1').addClass('selected-store');
+		$('.store2').removeClass('selected-store');
+		$('.store3').removeClass('selected-store');
+
 	});
 	$('.store2').on('click', function(){
 		app.promoBooze(app.store2, 'beer', 'wine', 'spirits');
+		//add the selected class and remove it from the other 2 stores
+		$('.store2').addClass('selected-store');
+		$('.store1').removeClass('selected-store');
+		$('.store3').removeClass('selected-store');
 	});
 	$('.store3').on('click', function(){
 		app.promoBooze(app.store3, 'beer', 'wine', 'spirits');
+		//add the selected class and remove it from the other 2 stores
+		$('.store3').addClass('selected-store');
+		$('.store1').removeClass('selected-store');
+		$('.store2').removeClass('selected-store');
 	});
 }; //end store selector function
 
@@ -254,6 +267,7 @@ app.inStock = function(items, store){
 	$gallery.flickity( 'select', 2 );
 	//remove old gallery-cells before adding new ones!
 	var cellElements = $gallery.flickity('getCellElements');
+	var galleryCell;
 	//for each product on promotion we check the stock at the store
 	$.each(items, function(index, value){
 		$.ajax({
@@ -279,10 +293,9 @@ app.inStock = function(items, store){
 
 				var itemPrice = $('<span>').html('<p class="item-price">$' + ((value.price_in_cents / 100).toFixed(2)) + '</p>');
 
-				var galleryCell = $('<div>').addClass('gallery-cell').append(itemImg, itemName, itemMiles, itemPackage, itemPrice);
+				galleryCell = $('<div>').addClass('gallery-cell').append(itemImg, itemName, itemMiles, itemPackage, itemPrice);
 
 				//append the new gallery-cells into the gallery
-				
 				$gallery.flickity('append', galleryCell);
 				//reload sizes of flickity
 				$gallery.flickity('reposition');
@@ -293,7 +306,13 @@ app.inStock = function(items, store){
 			}
 		}); //end results function
 	});//end each loop
-	$gallery.flickity('remove', cellElements);
+	//reveal the flickity gallery of promo items
+	$('.promotions').slideDown();
+	//allow time for the new slides to populate then remove the old ones
+	window.setTimeout(function() {
+		$gallery.flickity('remove', cellElements);
+	}, 500);
+
 };//instock function
 
 // =============================================================================
@@ -314,7 +333,6 @@ app.codeAddress = function(address) {
         map.setCenter(results[0].geometry.location);
         var location = new google.maps.Marker({
             map: map,
-            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
             animation: google.maps.Animation.DROP,
             position: results[0].geometry.location
         });
@@ -323,6 +341,7 @@ app.codeAddress = function(address) {
       }
     });
   }; //codeAddress
+
 //pass in current location and closets 3 stores
 app.initMap = function(store1, store2, store3) {
   	map = new google.maps.Map(document.getElementById('googleMap'), {
@@ -349,8 +368,27 @@ app.initMap = function(store1, store2, store3) {
     position: {lat: store3.latitude, lng: store3.longitude}
   });
 
-  marker.addListener('click', toggleBounce);
-  google.maps.event.trigger(map, 'resize');
+  // function reloadTiles() {
+  //     var tiles = $("#googleMap").find("img");
+  //     for (var i = 0; i < tiles.length; i++) {
+  //         var src = $(tiles[i]).attr("src");
+  //         if (/googleapis.com\/vt\?pb=/.test(src)) {				
+  //             var new_src = src.split("&ts")[0] + '&ts=' + (new Date()).getTime();
+  //             $(tiles[i]).attr("src", new_src);													
+  //         }				
+  //     }
+  // }
+  //reveal div
+  $('.stores-items-wrapper').slideDown(400, function(){
+  	//reload map
+  	console.log('map reset fired');
+  	// reloadTiles();
+  });
+
+
+  marker.setAnimation(google.maps.Animation.BOUNCE);
+  console.log(map);
+  
 
 };//end initMap
 
@@ -368,13 +406,13 @@ function toggleBounce() {
 // =============================================================================
 app.hideStuff = function(){
 	$('.promotions').hide();
-	$('.locations-wrapper').hide();
-	//$().hide;
+	$('.stores-items-wrapper').hide();
 };
 // =============================================================================
 // INIT FUNCTION
 // =============================================================================
 app.init = function(){
+	app.hideStuff();
 	app.locationListener();
 	
 }; // end init function
