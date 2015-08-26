@@ -98,6 +98,7 @@ p.lead{
 	justify-content: center;
 	text-align: center;
 	transition: all .3s ease;
+	border: none;
 	border-bottom: 3px solid darken($green, 30%);
 	@include nicebox();
 	&:hover{
