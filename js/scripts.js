@@ -21,6 +21,10 @@ app.locationListener = function(){
 		app.stores(app.postal);
 		//show the map
 		$('.locations-wrapper').slideDown(1000, 'swing');
+		// animate the scroll down to the map
+		$('html, body').animate({
+		       scrollTop: $(".locations-wrapper").offset().top
+		   }, 2000);
 	});
 
 };
@@ -308,6 +312,10 @@ app.inStock = function(items, store){
 	});//end each loop
 	//reveal the flickity gallery of promo items
 	$('.promotions').slideDown();
+	//slide window down
+	$('html, body').animate({
+	       scrollTop: $(".promotions").offset().top
+	   }, 1000);
 	//allow time for the new slides to populate then remove the old ones
 	window.setTimeout(function() {
 		$gallery.flickity('remove', cellElements);
