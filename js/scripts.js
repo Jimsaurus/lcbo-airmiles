@@ -342,6 +342,7 @@ app.codeAddress = function(address) {
         var location = new google.maps.Marker({
             map: map,
             animation: google.maps.Animation.DROP,
+    		icon: 'assets/map-marker.png',
             position: results[0].geometry.location
         });
       } else {
@@ -362,7 +363,6 @@ app.initMap = function(store1, store2, store3) {
     map: map,
     draggable: true,
     animation: google.maps.Animation.DROP,
-    icon: 'assets/map-marker.png',
     position: {lat: store1.latitude, lng: store1.longitude}
   });
   marker2 = new google.maps.Marker({
