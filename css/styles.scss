@@ -81,7 +81,7 @@ main{
 }//hero-wrapper
 p.lead{
 	//transform: rotate(-10deg);
-	margin:5px 0 5px 0;
+	margin:0;
 	span{
 		font-size: 25px;
 		text-shadow: 1px 1px 2px $black; 
@@ -127,7 +127,8 @@ p.lead{
 		font-size: 60px;
 	}
 	img{
-		width: 50%;
+		width: 40%;
+		max-width: 300px;
 	}
 }
 .hero-submit{
@@ -158,6 +159,10 @@ form{
 }
 .store{
 	padding: 8px;
+	border-right: 1px solid $white;
+	&:nth-child(3){
+		border: none;
+	}
 }
 .store-top{
 	position: relative;
@@ -180,7 +185,7 @@ form{
 		border-bottom: 3px solid darken(salmon, 5%);
 		position: absolute;
 		top: -33px;
-		left: 38%;
+		left: 40%;
 		&:hover{
 			background: darken(salmon, 5%);
 			i{
@@ -260,7 +265,7 @@ form{
 	position: absolute;
 	top: 7px;
 	right: 7px;
-	background: $blue;
+	background: lighten($blue, 10%);
 	color: $white;
 	border-radius: 50%;
 	width: 70px;
@@ -330,7 +335,7 @@ footer{
 		font-size: 14px;
 	}
 	.stores-items-wrapper span{
-		left: 20%;
+		left: 35%;
 	}
 }
 

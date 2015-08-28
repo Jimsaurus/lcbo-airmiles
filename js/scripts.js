@@ -355,12 +355,14 @@ app.initMap = function(store1, store2, store3) {
   	map = new google.maps.Map(document.getElementById('googleMap'), {
     zoom: 12,
     scrollwheel: false,
-    center: {lat: store1.latitude, lng: store1.longitude}
+    center: {lat: store1.latitude, lng: store1.longitude},
+    disableDefaultUI: true
   });
   marker = new google.maps.Marker({
     map: map,
     draggable: true,
     animation: google.maps.Animation.DROP,
+    icon: 'assets/map-marker.png',
     position: {lat: store1.latitude, lng: store1.longitude}
   });
   marker2 = new google.maps.Marker({
@@ -394,7 +396,7 @@ app.initMap = function(store1, store2, store3) {
   });
 
 
-  marker.setAnimation(google.maps.Animation.BOUNCE);
+  //marker.setAnimation(google.maps.Animation.BOUNCE);
   console.log(map);
   
 
