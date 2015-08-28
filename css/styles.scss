@@ -159,9 +159,8 @@ form{
 }
 .store{
 	padding: 8px;
-	border-right: 1px solid $white;
-	&:nth-child(3){
-		border: none;
+	&:hover{
+		background: darken($green, 5%);
 	}
 }
 .store-top{

@@ -303,10 +303,9 @@ form {
   background-size: cover; }
 
 .store {
-  padding: 8px;
-  border-right: 1px solid #f7f6ed; }
-  .store:nth-child(3) {
-    border: none; }
+  padding: 8px; }
+  .store:hover {
+    background: #b3d280; }
 
 .store-top {
   position: relative;
